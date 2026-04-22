@@ -17,13 +17,14 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; } /* বাটন ক্লিক করলে স্মুথ স্ক্রলিং হবে */
+
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
             color: #1d1d1f;
             display: flex;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         /* --- Sidebar Section --- */
@@ -57,11 +58,10 @@
             border: 4px solid #fff;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: var(--transition);
-            cursor: pointer;
         }
 
         .profile-img:hover {
-            transform: scale(1.05) rotate(2deg);
+            transform: scale(1.05) rotate(3deg);
             box-shadow: 0 15px 35px rgba(0, 102, 204, 0.2);
         }
 
@@ -78,7 +78,6 @@
             font-weight: 600;
             margin-top: 5px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .nav-links {
@@ -103,7 +102,7 @@
         .nav-item:hover {
             background: rgba(0, 102, 204, 0.1);
             color: var(--primary-accent);
-            transform: translateX(5px);
+            transform: translateX(8px);
         }
 
         /* --- Main Content Section --- */
@@ -121,7 +120,6 @@
             border-radius: 24px;
             padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
             transition: var(--transition);
         }
 
@@ -142,16 +140,14 @@
         h2 i { color: var(--primary-accent); }
 
         .item {
-            padding: 20px;
+            padding: 15px;
             border-radius: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             transition: var(--transition);
-            border-left: 4px solid transparent;
         }
 
         .item:hover {
             background: rgba(255, 255, 255, 0.5);
-            border-left-color: var(--primary-accent);
             padding-left: 25px;
         }
 
@@ -162,32 +158,16 @@
             text-transform: uppercase;
         }
 
-        .title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 5px 0;
-        }
+        .title { font-size: 1.25rem; font-weight: 600; margin: 5px 0; }
+        .org { font-size: 1rem; color: #6e6e73; margin-bottom: 8px; display: block; }
+        .desc { font-size: 0.95rem; color: #444; text-align: justify; }
 
-        .org {
-            font-size: 1rem;
-            color: #6e6e73;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .desc {
-            font-size: 0.95rem;
-            color: #444;
-            line-height: 1.6;
-        }
-
-        /* --- See More Button --- */
+        /* --- See More Section --- */
         #extra-experience { display: none; }
-        
         .btn-toggle {
             background: white;
-            border: 1px solid #d2d2d7;
-            padding: 12px 30px;
+            border: 1px solid var(--primary-accent);
+            padding: 10px 25px;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
@@ -196,11 +176,9 @@
             margin: 20px auto 0;
             color: var(--primary-accent);
         }
-
         .btn-toggle:hover {
             background: var(--primary-accent);
             color: white;
-            border-color: var(--primary-accent);
         }
 
         .social-btn {
@@ -215,12 +193,7 @@
             transition: var(--transition);
         }
 
-        .social-btn:hover {
-            background: #0055aa;
-            transform: scale(1.05);
-        }
-
-        /* Mobile Responsive */
+        /* Mobile View */
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; padding: 30px 20px; }
@@ -238,80 +211,79 @@
         </div>
 
         <nav class="nav-links">
-            <a href="#" class="nav-item"><i class="fas fa-user"></i> Overview</a>
-            <a href="#" class="nav-item"><i class="fas fa-briefcase"></i> Experience</a>
-            <a href="#" class="nav-item"><i class="fas fa-graduation-cap"></i> Education</a>
+            <a href="#overview" class="nav-item"><i class="fas fa-user"></i> Overview</a>
+            <a href="#experience" class="nav-item"><i class="fas fa-briefcase"></i> Experience</a>
+            <a href="#education" class="nav-item"><i class="fas fa-graduation-cap"></i> Education</a>
             <a href="info.html" class="nav-item"><i class="fas fa-link"></i> Social Links</a>
         </nav>
     </aside>
 
     <main class="main-content">
         
-        <section class="section-card">
+        <section id="overview" class="section-card">
             <h2><i class="fas fa-address-card"></i> About Me</h2>
             <p class="desc">
-                I am a dedicated <strong>CSE Student</strong> at Southeast University and an active leader in <strong>World Scouting</strong> since 2011. Currently serving as the <strong>Senior Rover Mate</strong> at Crystal Open Scouts. Proud to be part of the <strong>1st Batch of MoP Ring Badge Holders</strong> in Bangladesh history. Expert in leadership, PR, and Graphics Design.
+                I am a dedicated <strong>CSE Student</strong> at Southeast University (joined 2023) and an active leader in <strong>World Scouting</strong> since 2011. Currently, I am serving as the <strong>Senior Rover Mate</strong> at Crystal Open Scouts. Proud to be part of the <strong>1st Batch of MoP Ring Badge Holders</strong> in Bangladesh history. 
+            </p>
+            <p class="desc" style="margin-top: 10px;">
+                I also served as the <strong>Former Deputy Coordinator</strong> of the Public Relations & Marketing National Taskforce at Bangladesh Scouts. I specialize in leadership, PR, and Graphics Design.
             </p>
         </section>
 
-        <section class="section-card">
-            <h2><i class="fas fa-history"></i> Professional Journey</h2>
+        <section id="experience" class="section-card">
+            <h2><i class="fas fa-history"></i> Experience</h2>
             
-            <div id="experience-list">
-                <div class="item">
-                    <span class="date">March 2025 - Present</span>
-                    <div class="title">Senior Rover Mate</div>
-                    <span class="org">Crystal Open Scouts, Dhaka</span>
-                    <p class="desc">Leading community development and empowering stakeholders through intellectual growth.</p>
-                </div>
+            <div class="item">
+                <span class="date">March 1, 2025 - Present</span>
+                <div class="title">Senior Rover Mate</div>
+                <span class="org">Crystal Open Scouts, Dhaka</span>
+                <p class="desc">Leading community development and empowering stakeholders through intellectual and organizational growth.</p>
+            </div>
 
-                <div class="item">
-                    <span class="date">Jan 2024 - July 2024</span>
-                    <div class="title">Deputy Coordinator</div>
-                    <span class="org">PR & Marketing National Taskforce, Bangladesh Scouts</span>
-                    <p class="desc">Spearheaded national-level PR strategies and organizational communication.</p>
-                </div>
+            <div class="item">
+                <span class="date">Jan 1, 2024 - July 4, 2024</span>
+                <div class="title">Deputy Coordinator</div>
+                <span class="org">PR & Marketing National Taskforce, Bangladesh Scouts</span>
+            </div>
 
-                <div class="item">
-                    <span class="date">Sept 2020 - Present</span>
-                    <div class="title">Messenger of Peace (MoP) Ring Badge Holder</div>
-                    <span class="org">WOSM | 1st Batch in Bangladesh</span>
-                    <p class="desc">Recognized for personal and community peace-building projects.</p>
-                </div>
+            <div class="item">
+                <span class="date">Sept 19, 2020 - Present</span>
+                <div class="title">MoP Ring Badge Holder (1st Batch)</div>
+                <span class="org">WOSM | Messenger of Peace Network</span>
+            </div>
 
-                <div id="extra-experience">
-                    <div class="item">
-                        <span class="date">2024 - 2026</span>
-                        <div class="title">IT Secretary & Head of Graphics</div>
-                        <span class="org">Southeast Cultural Society</span>
-                    </div>
-                    <div class="item">
-                        <span class="date">2022 - 2025</span>
-                        <div class="title">Rover Mate</div>
-                        <span class="org">Crystal Open Scouts</span>
-                    </div>
-                    <div class="item">
-                        <span class="date">2021 - 2023</span>
-                        <div class="title">Assistant Coordinator</div>
-                        <span class="org">PR & Marketing Taskforce, Bangladesh Scouts</span>
-                    </div>
-                    <div class="item">
-                        <span class="date">2016 - 2017</span>
-                        <div class="title">Senior Patrol Leader (S.P.L)</div>
-                        <span class="org">Govt. Laboratory High School Scout Group</span>
-                    </div>
-                    <div class="item">
-                        <span class="date">2011 - 2018</span>
-                        <div class="title">Cub & Boy Scout Journey</div>
-                        <span class="org">World Scouting</span>
-                    </div>
+            <div id="extra-experience">
+                <div class="item">
+                    <span class="date">2024 - 2026</span>
+                    <div class="title">IT Secretary (Graphics) & Head of Graphics</div>
+                    <span class="org">Southeast Cultural Society</span>
+                </div>
+                <div class="item">
+                    <span class="date">2022 - 2025</span>
+                    <div class="title">Rover Mate</div>
+                    <span class="org">Crystal Open Scouts</span>
+                </div>
+                <div class="item">
+                    <span class="date">2021 - 2023</span>
+                    <div class="title">Assistant Coordinator</div>
+                    <span class="org">PR & Marketing Taskforce, Bangladesh Scouts</span>
+                </div>
+                <div class="item">
+                    <span class="date">2016 - 2017</span>
+                    <div class="title">Senior Patrol Leader (S.P.L)</div>
+                    <span class="org">Govt. Laboratory High School Scout Group</span>
+                </div>
+                <div class="item">
+                    <span class="date">2011 - 2018</span>
+                    <div class="title">Cub & Boy Scout Journey</div>
+                    <span class="org">World Scouting</span>
                 </div>
             </div>
 
             <button class="btn-toggle" id="toggleBtn" onclick="toggleExp()">See Full Experience</button>
         </section>
 
-        <section class="section-card">
+        <section id="education" class="section-card">
             <h2><i class="fas fa-university"></i> Education</h2>
             <div class="item">
                 <span class="date">2023 - Present</span>
@@ -341,11 +313,12 @@
         </section>
 
         <div style="text-align: center; padding-bottom: 50px;">
-            <a href="info.html" class="social-btn">Connect With Me</a>
+            <a href="info.html" class="social-btn">Get My Contact Links</a>
         </div>
     </main>
 
     <script>
+        // See More Function
         function toggleExp() {
             var extra = document.getElementById("extra-experience");
             var btn = document.getElementById("toggleBtn");
