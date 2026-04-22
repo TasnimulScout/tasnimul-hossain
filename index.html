@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasnimul Hossain | Dashboard Portfolio</title>
+    <title>Tasnimul Hossain | Interactive Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-accent: #0066cc;
-            --bg-light: #f5f5f7;
             --glass-white: rgba(255, 255, 255, 0.75);
             --sidebar-width: 280px;
             --activity-width: 300px;
@@ -25,6 +24,16 @@
             color: #1d1d1f;
             display: flex;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- Cursor Canvas --- */
+        #cursor-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; /* যাতে ক্লিকে সমস্যা না হয় */
+            z-index: 9999;
         }
 
         /* --- Sidebar Left --- */
@@ -49,7 +58,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: var(--transition);
         }
-
         .profile-img:hover { transform: scale(1.05) rotate(3deg); }
 
         .nav-links { width: 100%; margin-top: 30px; }
@@ -83,8 +91,7 @@
         h2 { font-size: 1.6rem; margin-bottom: 20px; color: var(--primary-accent); display: flex; align-items: center; gap: 10px; }
 
         .item { margin-bottom: 25px; padding: 15px; border-radius: 12px; transition: var(--transition); }
-        .item:hover { background: rgba(255, 255, 255, 0.6); padding-left: 20px; }
-        
+        .item:hover { background: rgba(255, 255, 255, 0.6); padding-left: 20px; transform: scale(1.01); }
         .org-title { font-size: 1.3rem; font-weight: 700; color: #1d1d1f; margin-bottom: 10px; display: block; }
         .sub-item { margin-bottom: 15px; border-left: 2px solid var(--primary-accent); padding-left: 15px; }
         .date { font-size: 0.8rem; font-weight: 700; color: var(--primary-accent); text-transform: uppercase; }
@@ -126,6 +133,8 @@
 </head>
 <body>
 
+    <canvas id="cursor-canvas"></canvas>
+
     <aside class="sidebar">
         <img src="My.jpeg" alt="Tasnimul" class="profile-img">
         <h1 style="font-size: 1.4rem; margin-top: 15px; text-align: center;">Tasnimul Hossain</h1>
@@ -142,11 +151,10 @@
     </aside>
 
     <main class="main-content">
-        
         <section id="overview" class="section-card">
             <h2><i class="fas fa-user-circle"></i> About Me</h2>
             <p class="desc">
-                I am a dedicated <strong>CSE Student</strong> at Southeast University and a <strong>Senior Rover Mate</strong> at Crystal Open Scouts. Recognized as part of the <strong>1st Batch of MoP Ring Badge Holders</strong> in Bangladesh, I specialize in leadership, PR management, and technical solutions.
+                I am a dedicated <strong>CSE Student</strong> at Southeast University and a <strong>Senior Rover Mate</strong> at Crystal Open Scouts. Recognized as part of the <strong>1st Batch of MoP Ring Badge Holders</strong> in Bangladesh history. 
             </p>
         </section>
 
@@ -155,18 +163,15 @@
             
             <div class="item">
                 <span class="org-title">Crystal Open Scouts, Dhaka</span>
-                
                 <div class="sub-item">
                     <span class="date">March 1, 2025 - Present</span>
                     <div class="role-title">Senior Rover Mate (SRM)</div>
-                    <p class="desc">Leading organizational development and community impact projects. Striving to empower members to be self-reliant.</p>
+                    <p class="desc">Leading organizational development and community impact projects.</p>
                 </div>
-
                 <div class="sub-item">
                     <span class="date">May 2022 - Feb 2025</span>
                     <div class="role-title">Rover Mate (RM)</div>
                 </div>
-
                 <div class="sub-item">
                     <span class="date">Jan 2021 - April 2022</span>
                     <div class="role-title">Assistant Rover Mate (ARM)</div>
@@ -175,13 +180,10 @@
 
             <div class="item">
                 <span class="org-title">National Taskforce, Bangladesh Scouts</span>
-                
                 <div class="sub-item">
                     <span class="date">Jan 1, 2024 - July 4, 2024</span>
                     <div class="role-title">Deputy Coordinator (PR & Marketing)</div>
-                    <p class="desc">Spearheaded national-level PR strategies and organizational communication.</p>
                 </div>
-
                 <div class="sub-item">
                     <span class="date">April 14, 2021 - Dec 31, 2023</span>
                     <div class="role-title">Assistant Coordinator</div>
@@ -190,9 +192,8 @@
 
             <div class="item">
                 <span class="date">Sept 19, 2020 - Present</span>
-                <div class="role-title">Messenger of Peace (MoP) Ring Badge Holder</div>
-                <span class="org">World Organization of the Scout Movement (WOSM)</span>
-                <p class="desc">1st batch in Bangladesh history to receive the prestigious RING BADGE for peace and community impact.</p>
+                <div class="role-title">MoP Ring Badge Holder (1st Batch)</div>
+                <span class="org">WOSM | Bangladesh Scouts</span>
             </div>
 
             <div id="extra-experience">
@@ -209,7 +210,7 @@
                 <div class="item">
                     <span class="date">2011 - 2018</span>
                     <div class="role-title">Cub & Boy Scout Journey</div>
-                    <span class="org">World Scouting (Cub: 2011-12, Boy Scout: 2013-18)</span>
+                    <span class="org">World Scouting Journey</span>
                 </div>
             </div>
             
@@ -237,19 +238,73 @@
 
         <section id="affiliations" class="section-card">
             <h2><i class="fas fa-users"></i> Affiliations</h2>
-            <p class="desc">BNCC Cadet (2016-18), Science Club & English Club of The Laboratorians, Media Team of Bangladesh Scouts.</p>
+            <p class="desc">BNCC Cadet (2016-18), Member of Science & English Club of The Laboratorians, Media Team of Bangladesh Scouts.</p>
         </section>
     </main>
 
     <aside class="activity-sidebar">
         <h3 style="color: var(--primary-accent); margin-bottom: 20px;"><i class="fas fa-camera-retro"></i> Activities</h3>
-        <div class="photo-card"><img src="a1.jpg"><div class="photo-info">Rescue Operations and Relief Distribution</div></div>
-        <div class="photo-card"><img src="activity1.jpg"><div class="photo-info">Assisting in traffic control as a volunteer</div></div>
-        <div class="photo-card"><img src="activity3.jpg"><div class="photo-info">The 52nd National Annual General Meeting of Bangladesh Scouts</div></div>
-       
+        <div class="photo-card"><img src="activity1.jpg"><div class="photo-info">Scout Carnival</div></div>
+        <div class="photo-card"><img src="activity2.jpg"><div class="photo-info">JOTA-JOTI 2025</div></div>
+        <div class="photo-card"><img src="activity3.jpg"><div class="photo-info">Graphics Projects</div></div>
     </aside>
 
     <script>
+        // --- জলজলে কার্সার কোড ---
+        const canvas = document.getElementById('cursor-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+                this.color = `rgba(0, 102, 204, ${Math.random()})`; // নীল রঙ
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            for (let i = 0; i < 5; i++) {
+                particles.push(new Particle(e.clientX, e.clientY));
+            }
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].size <= 0.2) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- See More History ---
         function toggleExp() {
             var x = document.getElementById("extra-experience");
             var b = document.getElementById("toggleBtn");
