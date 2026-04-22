@@ -15,7 +15,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* এনিমেটেড ব্যাকগ্রাউন্ড */
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -31,8 +30,8 @@
         .contact-container {
             position: relative;
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 40px;
             padding: 50px 30px;
@@ -40,10 +39,14 @@
             max-width: 450px;
             text-align: center;
             box-shadow: 0 25px 45px rgba(0,0,0,0.2);
-            z-index: 1;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        /* প্রোফাইল পিকচার গ্লো ইফেক্ট */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .profile-box {
             position: relative;
             width: 130px;
@@ -78,10 +81,9 @@
             100% { background-position: 0 0; }
         }
 
-        h2 { color: #fff; font-size: 2rem; font-weight: 700; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        h2 { color: #fff; font-size: 2rem; font-weight: 700; margin-bottom: 5px; }
         .subtitle { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 30px; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* সোশ্যাল বাটন ডিজাইন */
         .social-links { display: flex; flex-direction: column; gap: 15px; }
 
         .btn-link {
@@ -96,8 +98,6 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.4s;
-            position: relative;
-            overflow: hidden;
         }
 
         .btn-link:hover {
@@ -108,29 +108,49 @@
 
         .btn-link i { margin-right: 15px; font-size: 1.4rem; width: 30px; text-align: center; }
 
-        /* স্পেসিফিক কালার গ্লো */
+        /* Icon Glow Effects */
         .facebook:hover { box-shadow: 0 0 20px #1877f2; }
         .instagram:hover { box-shadow: 0 0 20px #e1306c; }
         .linkedin:hover { box-shadow: 0 0 20px #0077b5; }
         .snapchat:hover { box-shadow: 0 0 20px #fffc00; color: #fffc00; }
         .skype:hover { box-shadow: 0 0 20px #00aff0; }
 
-        .back-home {
+        /* Call & WhatsApp Action Section */
+        .contact-actions {
             margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .action-btn {
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .action-btn span { font-size: 0.7rem; font-weight: 400; opacity: 0.8; }
+        .action-btn:hover { transform: translateY(-5px); }
+        .whatsapp-icon:hover { color: #25D366; filter: drop-shadow(0 0 10px #25D366); }
+        .phone-icon:hover { color: #34b7f1; filter: drop-shadow(0 0 10px #34b7f1); }
+
+        .back-home {
+            margin-top: 25px;
             display: inline-block;
             color: #fff;
             text-decoration: none;
             font-size: 0.9rem;
-            opacity: 0.7;
+            opacity: 0.6;
             transition: 0.3s;
         }
         .back-home:hover { opacity: 1; letter-spacing: 1px; }
-
-        /* মোবাইল স্ক্রিন সেটিংস */
-        @media (max-width: 480px) {
-            .contact-container { padding: 30px 20px; }
-            h2 { font-size: 1.5rem; }
-        }
     </style>
 </head>
 <body>
@@ -161,10 +181,21 @@
             </a>
         </div>
 
+        <div class="contact-actions">
+            <a href="tel:+8801827621209" class="action-btn phone-icon" title="Direct Call">
+                <i class="fas fa-phone-alt"></i>
+                <span>Call</span>
+            </a>
+            <a href="https://wa.me/8801827621209" target="_blank" class="action-btn whatsapp-icon" title="WhatsApp Me">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+
         <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
         
-        <p style="margin-top: 20px; color: rgba(255,255,255,0.5); font-size: 0.8rem;">
-            +880 1827-621209
+        <p style="margin-top: 15px; color: rgba(255,255,255,0.4); font-size: 0.75rem;">
+            © 2026 Tasnimul Hossain
         </p>
     </div>
 
