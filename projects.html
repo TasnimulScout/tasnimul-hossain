@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasnimul's Projects | CSE Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-accent: #0066cc;
+            --bg-gradient: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            --glass-white: rgba(255, 255, 255, 0.7);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); min-height: 100vh; padding: 40px 20px; color: #1d1d1f; }
+
+        .container { max-width: 900px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
+        .project-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .project-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+
+        .project-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-accent); display: flex; align-items: center; gap: 10px; }
+        .tech-stack { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+        .tech-tag { background: rgba(0, 102, 204, 0.1); padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--primary-accent); }
+
+        .project-desc { font-size: 0.95rem; line-height: 1.6; color: #444; }
+        .project-features { list-style: none; margin-top: 10px; }
+        .project-features li { font-size: 0.9rem; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        .project-features li::before { content: "✔"; color: #28a745; font-weight: bold; }
+
+        .btn-back { display: inline-block; padding: 12px 25px; background: #1d1d1f; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; margin-bottom: 20px; transition: var(--transition); }
+        .btn-back:hover { background: #333; transform: translateX(-5px); }
+
+        .github-link { align-self: flex-start; margin-top: 15px; padding: 10px 20px; background: var(--primary-accent); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    
+    <div class="header">
+        <h1>My Technical Projects</h1>
+        <p>A showcase of my software development journey as a CSE student.</p>
+    </div>
+
+    <div class="project-card">
+        <div class="project-title"><i class="fas fa-seedling"></i> Flower Shop Management System</div>
+        <div class="tech-stack">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">JavaFX (GUI)</span>
+            <span class="tech-tag">OOP</span>
+            <span class="tech-tag">File Handling</span>
+        </div>
+        <p class="project-desc">
+            A comprehensive desktop application designed to manage a flower boutique. It features separate dashboards for Admin and Customers with secure login and data persistence.
+        </p>
+        <ul class="project-features">
+            <li><strong>Admin Role:</strong> Manage inventory (Add/Update/Delete flowers) and view/cancel orders.</li>
+            <li><strong>Customer Role:</strong> Browse available flowers, place orders, and track order history.</li>
+            <li><strong>Data Persistence:</strong> All information is saved and loaded from text files using Custom File Handlers.</li>
+            <li><strong>OOP Principles:</strong> Implemented Inheritance (User -> Admin/Customer) and Encapsulation.</li>
+        </ul>
+        <a href="#" class="github-link"><i class="fab fa-github"></i> View Source Code</a>
+    </div>
+
+    <div class="project-card" style="opacity: 0.7;">
+        <div class="project-title"><i class="fas fa-code"></i> Upcoming Project...</div>
+        <p class="project-desc">Working on a new SQL based database project or Assembly task. Stay tuned!</p>
+    </div>
+</div>
+
+</body>
+</html>
