@@ -3,48 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasnimul's Info</title>
+    <title>Tasnimul's Social Links</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
         }
-        .info-card {
+        .profile-card {
             background: white;
+            width: 350px;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 300px;
         }
-        /* Chhobi-ti ke shundor bhabe dekhate niche style deya hoyeche */
         .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%; /* Chhobi-ti gol dekhabe */
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
             object-fit: cover;
             border: 4px solid #764ba2;
             margin-bottom: 15px;
         }
-        h2 { color: #764ba2; margin: 10px 0; }
-        p { color: #333; font-size: 1.1rem; margin: 5px 0; }
-        a { color: #667eea; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
+        h2 { margin: 10px 0; color: #333; }
+        .username { color: #777; margin-bottom: 20px; font-size: 0.9rem; }
+        
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .social-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .social-item i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            width: 25px;
+        }
+        .social-item:hover { transform: scale(1.03); opacity: 0.9; }
+
+        /* সোশ্যাল মিডিয়া কালারস */
+        .facebook { background: #1877F2; }
+        .instagram { background: #E4405F; }
+        .linkedin { background: #0A66C2; }
+        .snapchat { background: #FFFC00; color: black; }
+        .skype { background: #00AFF0; }
     </style>
 </head>
 <body>
-    <div class="info-card">
-        <img src="My.jpeg" alt="Tasnimul Hossain" class="profile-img">
-        
-        <h2>আমার ইনফো</h2>
-        <p><strong>নাম:</strong> Tasnimul Hossain</p>
-        <p><strong>মোবাইল:</strong> +880 1827-621209</p>
-        <p><strong>Facebook:</strong> <a href="https://www.facebook.com/tasnimul.hossain.scout" target="_blank">Tasnimul Hossain Profile</a></p>
+
+<div class="profile-card">
+    <img src="My.jpeg" alt="Tasnimul Hossain" class="profile-img">
+    
+    <h2>Tasnimul Hossain</h2>
+    <p class="username">CSE Student | Crystal Open Scouts Group</p>
+
+    <div class="social-links">
+        <a href="https://www.facebook.com/tasnimul.hossain.scout" target="_blank" class="social-item facebook">
+            <i class="fab fa-facebook"></i> Facebook
+        </a>
+
+        <a href="https://www.instagram.com/tasnimul.scout" target="_blank" class="social-item instagram">
+            <i class="fab fa-instagram"></i> Instagram
+        </a>
+
+        <a href="https://www.linkedin.com/in/tasnimul-hossain" target="_blank" class="social-item linkedin">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+
+        <a href="https://www.snapchat.com/add/tasnimul.scouts" target="_blank" class="social-item snapchat">
+            <i class="fab fa-snapchat"></i> Snapchat
+        </a>
+
+        <a href="skype:tasnimul.bhalo.nei?chat" class="social-item skype">
+            <i class="fab fa-skype"></i> Skype
+        </a>
     </div>
+
+    <p style="margin-top: 20px; color: #555; font-size: 0.8rem;">Mobile: +880 1827-621209</p>
+</div>
+
 </body>
 </html>
