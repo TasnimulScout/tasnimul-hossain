@@ -3,99 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasnimul's Social Links</title>
+    <title>Tasnimul Hossain | Social Links</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-accent: #0066cc;
+            --bg-gradient: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            --glass-white: rgba(255, 255, 255, 0.7);
+            --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            overflow: hidden;
         }
-        .profile-card {
-            background: white;
-            width: 350px;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+        /* --- Social Card --- */
+        .social-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            padding: 40px;
+            width: 90%;
+            max-width: 400px;
             text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            animation: fadeIn 0.8s ease-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .profile-img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #764ba2;
-            margin-bottom: 15px;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: var(--transition);
         }
-        h2 { margin: 10px 0; color: #333; }
-        .username { color: #777; margin-bottom: 20px; font-size: 0.9rem; }
-        
-        .social-links {
+
+        .profile-img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        h2 { font-size: 1.6rem; color: #1d1d1f; margin-bottom: 5px; }
+        .tagline { color: var(--primary-accent); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 25px; }
+
+        .links-container {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
         }
-        .social-item {
+
+        .link-item {
             display: flex;
             align-items: center;
             padding: 12px 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             text-decoration: none;
-            color: white;
-            font-weight: 500;
-            transition: 0.3s;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .social-item i {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            width: 25px;
-        }
-        .social-item:hover { transform: scale(1.03); opacity: 0.9; }
 
-        /* সোশ্যাল মিডিয়া কালারস */
+        .link-item i { margin-right: 15px; font-size: 1.3rem; width: 25px; }
+
+        /* --- ব্র্যান্ড কালারস --- */
         .facebook { background: #1877F2; }
-        .instagram { background: #E4405F; }
-        .linkedin { background: #0A66C2; }
-        .snapchat { background: #FFFC00; color: black; }
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .linkedin { background: #0077B5; }
+        .snapchat { background: #FFFC00; color: #333 !important; }
         .skype { background: #00AFF0; }
+        .back-btn { background: #1d1d1f; margin-top: 10px; }
+
+        .link-item:hover {
+            transform: translateY(-5px);
+            filter: brightness(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .footer-info {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: #6e6e73;
+        }
     </style>
 </head>
 <body>
 
-<div class="profile-card">
-    <img src="My.jpeg" alt="Tasnimul Hossain" class="profile-img">
-    
-    <h2>Tasnimul Hossain</h2>
-    <p class="username">CSE Student | Crystal Open Scouts Group</p>
+    <div class="social-card">
+        <img src="My.jpeg" alt="Tasnimul Hossain" class="profile-img">
+        <h2>Tasnimul Hossain</h2>
+        <p class="tagline">Connect with Me</p>
 
-    <div class="social-links">
-        <a href="https://www.facebook.com/tasnimul.hossain.scout" target="_blank" class="social-item facebook">
-            <i class="fab fa-facebook"></i> Facebook
-        </a>
+        <div class="links-container">
+            <a href="https://www.facebook.com/tasnimul.hossain.scout" target="_blank" class="link-item facebook">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
 
-        <a href="https://www.instagram.com/tasnimul.scout" target="_blank" class="social-item instagram">
-            <i class="fab fa-instagram"></i> Instagram
-        </a>
+            <a href="https://www.instagram.com/tasnimul.scout" target="_blank" class="link-item instagram">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
 
-        <a href="https://www.linkedin.com/in/tasnimul-hossain" target="_blank" class="social-item linkedin">
-            <i class="fab fa-linkedin"></i> LinkedIn
-        </a>
+            <a href="https://www.linkedin.com/in/tasnimul-hossain" target="_blank" class="link-item linkedin">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
 
-        <a href="https://www.snapchat.com/add/tasnimul.scouts" target="_blank" class="social-item snapchat">
-            <i class="fab fa-snapchat"></i> Snapchat
-        </a>
+            <a href="https://www.snapchat.com/add/tasnimul.scouts" target="_blank" class="link-item snapchat">
+                <i class="fab fa-snapchat-ghost"></i> Snapchat
+            </a>
 
-        <a href="skype:tasnimul.bhalo.nei?chat" class="social-item skype">
-            <i class="fab fa-skype"></i> Skype
-        </a>
+            <a href="skype:tasnimul.bhalo.nei?chat" class="link-item skype">
+                <i class="fab fa-skype"></i> Skype
+            </a>
+
+            <a href="index.html" class="link-item back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+
+        <p class="footer-info">Mobile: +880 1827-621209</p>
     </div>
-
-    <p style="margin-top: 20px; color: #555; font-size: 0.8rem;">Mobile: +880 1827-621209</p>
-</div>
 
 </body>
 </html>
