@@ -108,20 +108,20 @@
         
         .org-title { font-size: 1.3rem; font-weight: 700; color: #1d1d1f; margin-bottom: 10px; display: block; }
         
-        /* Crystal Trigger Effect */
-        .crystal-trigger {
+        /* Modal Trigger Style */
+        .modal-trigger {
             cursor: pointer;
             position: relative;
             display: inline-block;
             transition: 0.3s;
             color: #1d1d1f;
         }
-        .crystal-trigger:hover {
+        .modal-trigger:hover {
             color: var(--primary-accent);
             text-decoration: underline;
         }
-        .crystal-trigger::after {
-            content: "Click to see my activities here 🔍";
+        .modal-trigger::after {
+            content: "Click to see details 🔍";
             position: absolute;
             bottom: 110%; left: 0;
             background: #1d1d1f;
@@ -135,7 +135,7 @@
             transition: 0.3s;
             z-index: 10;
         }
-        .crystal-trigger:hover::after {
+        .modal-trigger:hover::after {
             opacity: 1;
             visibility: visible;
         }
@@ -216,26 +216,11 @@
             margin: 20px 0;
         }
         .modal-gallery img {
-            width: 100%; height: 200px;
+            width: 100%; height: 180px;
             border-radius: 15px;
             object-fit: cover;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: 0.3s;
         }
-        .modal-gallery img:hover { transform: scale(1.03); }
-
-        .modal-link-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            background: #1877f2;
-            transition: 0.3s;
-        }
-        .modal-link-btn:hover { background: #145dbf; transform: translateY(-3px); }
 
         @media (max-width: 1100px) {
             .activity-sidebar { display: none; }
@@ -247,34 +232,11 @@
 
     <canvas id="cursor-canvas"></canvas>
 
-    <div id="crystalModal" class="modal">
+    <div id="infoModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div class="modal-body">
-                <h2 style="color: #0066cc; margin-bottom: 5px;">My Activity at Crystal Open Scouts</h2>
-                <p style="color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 25px;">Senior Rover Mate | leadership & community Service</p>
-                
-                <div class="modal-gallery">
-                    <img src="c1.jpg" alt="Activity 1">
-                    <img src="c2.jpg" alt="Activity 2">
-                    <img src="c3.jpg" alt="Activity 3">
-                    <img src="c4.jpg" alt="Activity 4">
+            <div id="modalBody">
                 </div>
-
-                <div style="text-align: left; background: rgba(0,102,204,0.05); padding: 25px; border-radius: 20px;">
-                    <h4 style="margin-bottom: 15px; color: #333;"><i class="fas fa-star" style="color: #ffd700;"></i> Key Roles & Activities:</h4>
-                    <ul style="list-style: none; color: #444; line-height: 1.8;">
-                        <li><i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i> Leading over 50+ Rovers as the Senior Rover Mate.</li>
-                        <li><i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i> Managing weekly Friday meetings and attendance records.</li>
-                        <li><i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i> Coordinating rescue operations and relief distribution during national crises.</li>
-                        <li><i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i> Organizing large-scale events like 'Scout Carnival 2025'.</li>
-                    </ul>
-                </div>
-                
-                <a href="https://www.facebook.com/CrystalOpenScouts" target="_blank" class="modal-link-btn">
-                    <i class="fab fa-facebook"></i> Visit Official Crystal Facebook
-                </a>
-            </div>
         </div>
     </div>
 
@@ -309,11 +271,11 @@
             <h2><i class="fas fa-award"></i> Professional Journey</h2>
             
             <div class="item">
-                <span class="org-title crystal-trigger" onclick="openModal()">Crystal Open Scouts, Dhaka</span>
+                <span class="org-title modal-trigger" onclick="openInfoModal('crystal')">Crystal Open Scouts, Dhaka</span>
                 <div class="sub-item">
                     <span class="date">March 1, 2025 - Present</span>
                     <div class="role-title">Senior Rover Mate (SRM)</div>
-                    <p class="desc">Leading organizational development and community impact projects with a vision for self-reliant scouting.</p>
+                    <p class="desc">Leading organizational development and community impact projects.</p>
                 </div>
                 <div class="sub-item">
                     <span class="date">May 2022 - Feb 2025</span>
@@ -326,7 +288,7 @@
             </div>
 
             <div class="item">
-                <span class="org-title">National Taskforce, Bangladesh Scouts</span>
+                <span class="org-title modal-trigger" onclick="openInfoModal('taskforce')">National Taskforce, Bangladesh Scouts</span>
                 <div class="sub-item">
                     <span class="date">Jan 1, 2024 - July 4, 2024</span>
                     <div class="role-title">Deputy Coordinator (PR & Marketing)</div>
@@ -338,26 +300,38 @@
             </div>
 
             <div class="item">
-                <span class="date">Sept 19, 2020 - Present</span>
-                <div class="role-title">MoP Ring Badge Holder (1st Batch)</div>
-                <span class="org">World Organization of the Scout Movement (WOSM)</span>
+                <span class="org-title modal-trigger" onclick="openInfoModal('mop')">Messenger of Peace (MoP)</span>
+                <div class="sub-item">
+                    <span class="date">Sept 19, 2020 - Present</span>
+                    <div class="role-title">MoP Ring Badge Holder (1st Batch)</div>
+                    <span class="org">World Organization of the Scout Movement (WOSM)</span>
+                </div>
             </div>
 
             <div id="extra-experience">
                 <div class="item">
-                    <span class="date">March 2024 - Jan 2026</span>
-                    <div class="role-title">IT Secretary & Head of Graphics</div>
-                    <span class="org">Southeast Cultural Society</span>
+                    <span class="org-title modal-trigger" onclick="openInfoModal('seu')">Southeast Cultural Society</span>
+                    <div class="sub-item">
+                        <span class="date">March 2024 - Jan 2026</span>
+                        <div class="role-title">IT Secretary & Head of Graphics</div>
+                    </div>
                 </div>
+
                 <div class="item">
-                    <span class="date">July 2016 - June 2017</span>
-                    <div class="role-title">Senior Patrol Leader (S.P.L)</div>
-                    <span class="org">Govt. Laboratory High School Scout Group</span>
+                    <span class="org-title modal-trigger" onclick="openInfoModal('govtlab')">Govt. Laboratory High School Scout Group</span>
+                    <div class="sub-item">
+                        <span class="date">July 2016 - June 2017</span>
+                        <div class="role-title">Senior Patrol Leader (S.P.L)</div>
+                    </div>
                 </div>
+
                 <div class="item">
-                    <span class="date">2011 - 2018</span>
-                    <div class="role-title">Cub & Boy Scout Journey</div>
-                    <span class="org">World Scouting (Cub: 2011-12, Boy Scout: 2013-18)</span>
+                    <span class="org-title modal-trigger" onclick="openInfoModal('early')">Early Scouting Journey</span>
+                    <div class="sub-item">
+                        <span class="date">2011 - 2018</span>
+                        <div class="role-title">Cub & Boy Scout Journey</div>
+                        <span class="org">World Scouting (Cub: 2011-12, Boy Scout: 2013-18)</span>
+                    </div>
                 </div>
             </div>
             
@@ -398,15 +372,71 @@
     </aside>
 
     <script>
-        // --- Modal Logic ---
-        function openModal() {
-            document.getElementById("crystalModal").style.display = "flex";
+        // --- Enhanced Modal Logic ---
+        const modalData = {
+            crystal: {
+                title: "Crystal Open Scouts, Dhaka",
+                subtitle: "Leadership & Community Service",
+                desc: "Managing attendance, weekly meetings, and leading over 50+ Rovers. Organizing mega events like Scout Carnival.",
+                images: ["c1.jpg", "c2.jpg", "c3.jpg", "c4.jpg"]
+            },
+            taskforce: {
+                title: "National Taskforce, Bangladesh Scouts",
+                subtitle: "PR & Marketing Management",
+                desc: "Spearheading national-level Public Relations strategies and coordinating social media presence for Bangladesh Scouts.",
+                images: ["t1.jpg", "t2.jpg"]
+            },
+            mop: {
+                title: "Messenger of Peace (MoP)",
+                subtitle: "Global Peace Network",
+                desc: "Part of the historic 1st batch in Bangladesh to receive the Ring Badge for impactful peace-building projects.",
+                images: ["m1.jpg", "m2.jpg"]
+            },
+            seu: {
+                title: "Southeast Cultural Society",
+                subtitle: "IT & Graphics Leadership",
+                desc: "Head of Graphics, managing all visual communications and digital assets for university cultural events.",
+                images: ["s1.jpg", "s2.jpg"]
+            },
+            govtlab: {
+                title: "Govt. Laboratory High School",
+                subtitle: "Senior Patrol Leader (SPL)",
+                desc: "Led the school scout troop, maintaining discipline and organizing school-level scouting programs.",
+                images: ["gl1.jpg", "gl2.jpg"]
+            },
+            early: {
+                title: "Early Scouting Journey",
+                subtitle: "Cub & Boy Scouting",
+                desc: "Started as a Cub in 2011. A decade-long journey of learning and discipline through the world scouting movement.",
+                images: ["e1.jpg", "e2.jpg"]
+            }
+        };
+
+        function openInfoModal(key) {
+            const data = modalData[key];
+            let galleryHtml = '<div class="modal-gallery">';
+            data.images.forEach(img => {
+                galleryHtml += `<img src="${img}" alt="Activity Image">`;
+            });
+            galleryHtml += '</div>';
+
+            document.getElementById("modalBody").innerHTML = `
+                <h2 style="color: #0066cc; margin-bottom: 5px;">${data.title}</h2>
+                <p style="color: #666; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 20px;">${data.subtitle}</p>
+                ${galleryHtml}
+                <div style="text-align: left; background: rgba(0,102,204,0.05); padding: 25px; border-radius: 20px; margin-top: 15px;">
+                    <p class="desc">${data.desc}</p>
+                </div>
+            `;
+            document.getElementById("infoModal").style.display = "flex";
         }
+
         function closeModal() {
-            document.getElementById("crystalModal").style.display = "none";
+            document.getElementById("infoModal").style.display = "none";
         }
+
         window.onclick = function(event) {
-            let modal = document.getElementById("crystalModal");
+            let modal = document.getElementById("infoModal");
             if (event.target == modal) { modal.style.display = "none"; }
         }
 
