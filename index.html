@@ -7,32 +7,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* পেজ লোড হওয়ার এনিমেশন */
+        @keyframes fadeInPage {
+            from { opacity: 0; filter: blur(10px); transform: translateY(20px); }
+            to { opacity: 1; filter: blur(0); transform: translateY(0); }
+        }
 
-        /* পেজ লোড হওয়ার এনিমেশন */
-@keyframes fadeInPage {
-    from { opacity: 0; filter: blur(10px); transform: translateY(20px); }
-    to { opacity: 1; filter: blur(0); transform: translateY(0); }
-}
+        body {
+            animation: fadeInPage 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            color: #1d1d1f;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-body {
-    animation: fadeInPage 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
+        .fade-out {
+            opacity: 0 !important;
+            filter: blur(10px) !important;
+            transform: translateY(-20px) !important;
+            transition: 0.5s ease-in-out;
+        }
 
-/* পেজ থেকে বিদায় নেওয়ার এনিমেশন */
-.fade-out {
-    opacity: 0 !important;
-    filter: blur(10px) !important;
-    transform: translateY(-20px) !important;
-    transition: 0.5s ease-in-out;
-}
+        #cursor-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
 
-#cursor-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-}
         :root {
             --primary-accent: #0066cc;
             --glass-white: rgba(255, 255, 255, 0.75);
@@ -43,24 +48,6 @@ body {
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-            color: #1d1d1f;
-            display: flex;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Interactive Cursor Canvas */
-        #cursor-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
 
         /* Sidebar Section */
         .sidebar {
@@ -116,10 +103,41 @@ body {
 
         h2 { font-size: 1.6rem; margin-bottom: 20px; color: var(--primary-accent); display: flex; align-items: center; gap: 10px; }
 
-        .item { margin-bottom: 25px; padding: 15px; border-radius: 12px; transition: var(--transition); }
+        .item { margin-bottom: 25px; padding: 15px; border-radius: 12px; transition: var(--transition); position: relative;}
         .item:hover { background: rgba(255, 255, 255, 0.6); padding-left: 20px; }
         
         .org-title { font-size: 1.3rem; font-weight: 700; color: #1d1d1f; margin-bottom: 10px; display: block; }
+        
+        /* Modal Trigger Styling for Crystal Scouts */
+        .crystal-trigger {
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .crystal-trigger:hover {
+            color: var(--primary-accent);
+            text-decoration: underline;
+        }
+        .crystal-trigger::after {
+            content: "Click to see my activities here 🔍";
+            position: absolute;
+            bottom: 110%; left: 0;
+            background: #1d1d1f;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+        .crystal-trigger:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .sub-item { margin-bottom: 15px; border-left: 2px solid var(--primary-accent); padding-left: 15px; }
         .date { font-size: 0.8rem; font-weight: 700; color: var(--primary-accent); text-transform: uppercase; }
         .role-title { font-size: 1.1rem; font-weight: 600; color: #333; margin: 3px 0; }
@@ -152,6 +170,58 @@ body {
         .btn-toggle { background: white; border: 1.5px solid var(--primary-accent); padding: 10px 25px; border-radius: 50px; font-weight: 600; cursor: pointer; color: var(--primary-accent); display: block; margin: 10px auto; transition: 0.3s; }
         .btn-toggle:hover { background: var(--primary-accent); color: white; }
 
+        /* MODAL STYLING */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: var(--glass-white);
+            padding: 30px;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: modalPop 0.4s ease;
+        }
+        @keyframes modalPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px; right: 20px;
+            font-size: 25px; cursor: pointer;
+            color: #444;
+        }
+        .modal-body img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .modal-links {
+            display: flex; gap: 15px; margin-top: 20px;
+        }
+        .modal-link-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
         @media (max-width: 1100px) {
             .activity-sidebar { display: none; }
             .main-content { margin-right: 0; }
@@ -161,6 +231,27 @@ body {
 <body>
 
     <canvas id="cursor-canvas"></canvas>
+
+    <div id="crystalModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <h2 style="color: #0066cc;">Crystal Open Scouts Group</h2>
+                <img src="crystal_cover.jpg" alt="Crystal Scouts Activity"> 
+                <p class="desc">
+                    Crystal Open Scouts Group is one of the most active and prestigious open scout groups in Dhaka. Here, I have progressed from an Assistant Rover Mate (ARM) to my current leadership position as the <strong>Senior Rover Mate (SRM)</strong>. 
+                </p>
+                <p class="desc" style="margin-top: 10px;">
+                    My activities here include organizing camps, leading community service projects, and mentoring new rovers in intellectual and organizational growth.
+                </p>
+                
+                <div class="modal-links">
+                    <a href="https://www.facebook.com/CrystalOpenScouts" target="_blank" class="modal-link-btn" style="background: #1877f2;"><i class="fab fa-facebook"></i> Facebook Page</a>
+                    <a href="#" class="modal-link-btn" style="background: #1d1d1f;"><i class="fas fa-globe"></i> Website</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <aside class="sidebar">
         <img src="My.jpeg" alt="Tasnimul" class="profile-img">
@@ -193,7 +284,8 @@ body {
             <h2><i class="fas fa-award"></i> Professional Journey</h2>
             
             <div class="item">
-                <span class="org-title">Crystal Open Scouts, Dhaka</span>
+                <span class="org-title crystal-trigger" onclick="openModal()">Crystal Open Scouts, Dhaka</span>
+                
                 <div class="sub-item">
                     <span class="date">March 1, 2025 - Present</span>
                     <div class="role-title">Senior Rover Mate (SRM)</div>
@@ -278,79 +370,27 @@ body {
         <div class="photo-card"><img src="a1.jpg"><div class="photo-info">Rescue Operations and Relief Distribution</div></div>
         <div class="photo-card"><img src="activity1.jpg"><div class="photo-info">Assisting in traffic control as a volunteer</div></div>
         <div class="photo-card"><img src="activity3.jpg"><div class="photo-info">52nd National Annual General Meeting of Bangladesh Scouts</div></div>
-   <div class="photo-card"><img src="a2.jpg"><div class="photo-info">Counselor, PowerPoint Presentation Workshop</div></div>
-   
+        <div class="photo-card"><img src="a2.jpg"><div class="photo-info">Counselor, PowerPoint Presentation Workshop</div></div>
     </aside>
 
     <script>
-        // Interactive Particles Code
+        // Modal Functions
+        function openModal() {
+            document.getElementById("crystalModal").style.display = "flex";
+        }
+        function closeModal() {
+            document.getElementById("crystalModal").style.display = "none";
+        }
+        // Close modal if clicked outside
+        window.onclick = function(event) {
+            let modal = document.getElementById("crystalModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Particle System
         const canvas = document.getElementById('cursor-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 5 + 1;
-                this.speedX = Math.random() * 3 - 1.5;
-                this.speedY = Math.random() * 3 - 1.5;
-                this.color = `rgba(0, 102, 204, ${Math.random()})`;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.size > 0.2) this.size -= 0.1;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        window.addEventListener('mousemove', (e) => {
-            for (let i = 0; i < 5; i++) {
-                particles.push(new Particle(e.clientX, e.clientY));
-            }
-        });
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                if (particles[i].size <= 0.2) {
-                    particles.splice(i, 1);
-                    i--;
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        function toggleExp() {
-            var x = document.getElementById("extra-experience");
-            var b = document.getElementById("toggleBtn");
-            if (x.style.display === "none" || x.style.display === "") {
-                x.style.display = "block"; b.innerHTML = "Show Less";
-            } else {
-                x.style.display = "none"; b.innerHTML = "See More History";
-            }
-        }
-    </script>
-    <script>
-    // ১. কার্সার ইফেক্ট কোড
-    const canvas = document.getElementById('cursor-canvas');
-    if (canvas) {
         const ctx = canvas.getContext('2d');
         let particles = [];
         function resize() {
@@ -369,14 +409,12 @@ body {
                 this.color = `rgba(0, 102, 204, ${Math.random()})`;
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+                this.x += this.speedX; this.y += this.speedY;
                 if (this.size > 0.2) this.size -= 0.1;
             }
             draw() {
                 ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
@@ -386,28 +424,34 @@ body {
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
+                particles[i].update(); particles[i].draw();
                 if (particles[i].size <= 0.2) { particles.splice(i, 1); i--; }
             }
             requestAnimationFrame(animate);
         }
         animate();
-    }
 
-    // ২. পেজ ট্রানজিশন কোড
-    document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            const targetUrl = this.getAttribute('href');
-            if (targetUrl && targetUrl.includes('.html')) {
-                e.preventDefault();
-                document.body.classList.add('fade-out');
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 500);
-            }
+        // Page Transitions & See More
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetUrl = this.getAttribute('href');
+                if (targetUrl && targetUrl.includes('.html')) {
+                    e.preventDefault();
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => { window.location.href = targetUrl; }, 500);
+                }
+            });
         });
-    });
-</script>
+
+        function toggleExp() {
+            var x = document.getElementById("extra-experience");
+            var b = document.getElementById("toggleBtn");
+            if (x.style.display === "none" || x.style.display === "") {
+                x.style.display = "block"; b.innerHTML = "Show Less";
+            } else {
+                x.style.display = "none"; b.innerHTML = "See More History";
+            }
+        }
+    </script>
 </body>
 </html>
